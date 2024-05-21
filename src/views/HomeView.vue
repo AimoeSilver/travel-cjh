@@ -1,9 +1,24 @@
-<script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+<script>
+import LoginPage from '@/views/login/LoginPage.vue'
+export default {
+  name: 'HomeView',
+  components: {
+    LoginPage
+  },
+  data() {
+    return {
+      
+    }
+  }
+}
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <div class="main">
+    <login-page />
+  </div>
 </template>
+
+<style lang="scss" scoped>
+
+</style>
