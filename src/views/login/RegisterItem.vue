@@ -2,18 +2,17 @@
   <div class="register-item">
     <div>
       <p class="messageOne">开始你的 Travels 之旅</p>
-      <h1 class="messageTwo">注册到 
-        
-        <span class="T">
-            Travels
-        </span>
-    </h1>
+      <h1 class="messageTwo">
+        注册到
+
+        <span class="T"> Travels </span>
+      </h1>
       <p class="messagethree">
         是否已经拥有账户
-        <span class="toLoginMessage">登录</span>
+        <span class="toLoginMessage" @click="pageChangeSubmit">登录</span>
       </p>
 
-      <el-form id="form" ref="formRef" :model="form" :rules='rules' label-width="auto">
+      <el-form id="form" ref="formRef" :model="form" :rules="rules" label-width="auto">
         <el-form-item class="lineFeed" label="用户名" prop="name">
           <el-input class="input" v-model="form.name" />
         </el-form-item>
@@ -32,7 +31,7 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref, defineEmits } from 'vue'
 
 // do not use same name with ref
 const form = reactive({
@@ -41,6 +40,7 @@ const form = reactive({
   password: ''
 })
 
+// 表单规则
 const rules = {
   name: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
   email: [
@@ -66,6 +66,14 @@ const onSubmit = () => {
     }
   })
 }
+
+// 定义 emit 可能的事件
+const emit = defineEmits(['pageChange'])
+
+// click 登录的事件
+const pageChangeSubmit =  () => {
+  emit('pageChange')
+}
 </script>
 
 <style lang="scss" scope>
@@ -86,8 +94,8 @@ $pur2: #9c82d5;
     font-weight: 700;
     margin-top: 5%;
     .T {
-        color: $pur;
-        font-size: 1.2em;
+      color: $pur;
+      font-size: 1.2em;
     }
   }
   .messagethree {

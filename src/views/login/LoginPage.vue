@@ -2,34 +2,57 @@
   <div id="main">
     <!-- 中间盒 -->
     <div class="container">
-      <div class="card cover">
-
-      </div>
+      <div
+        ref="cover"
+        class="card cover"
+        @animationend="handleAnimationEnd"
+        :style="{
+          'animation-play-state': isPaused ? 'paused' : 'running'
+        }"
+      ></div>
       <div class="card">
         <div class="register-form">
-          <register-item />
+          <register-item @pageChange="handleChange" />
         </div>
       </div>
 
       <div class="card">
         <div class="login-form">
-
+          <register-item @pageChange="handleChange" />
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-
+<script setup>
 import RegisterItem from './RegisterItem.vue'
+import { ref } from 'vue'
 
-export default {
-  components: { RegisterItem },
-  name: 'LoginPage',
-  data() {
-    return {}
+// animation 状态
+const isPaused = ref(true)
+const clickStatus = ref(false)
+
+const cover =ref(null)
+// login or register status 状态码
+
+// Click Login 执行的事件
+
+const handleChange = () => {
+  // 防止重复点击
+  if (!clickStatus.value) {
+    clickStatus.value = true
+    isPaused.value = !isPaused.value
+    setTimeout(() => {
+      clickStatus.value = false
+    }, 1000)
+    console.log('Page Change')
   }
+}
+
+const handleAnimationEnd = (event) => {
+    console.log('动画播放完成了！')
+    
 }
 </script>
 
@@ -37,12 +60,13 @@ export default {
 @import '../src/style/color.scss';
 
 #main {
-  font-family: "";
+  font-family: '';
   width: 100vw;
   height: 100vh;
   background-size: 20%;
   background-repeat: repeat;
   background-image: url('../src/assets/backgrouond-login.svg');
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,18 +81,9 @@ export default {
     background-color: #fff;
     position: relative;
 
-    .cover {
-      position: absolute;
-      opacity: 0.6;
-      z-index: 3;
-      background-color: rgb(92, 92, 235);
-    }
-
     .register-form {
       width: 75%;
       height: 100%;
-      
-
     }
 
     .card {
@@ -81,6 +96,35 @@ export default {
       color: $primary;
       // background-color: rgb(113, 113, 113);
     }
+
+    .cover {
+      width: 60%;
+      position: absolute;
+      left: 40%;
+      opacity: 0.6;
+      z-index: 3;
+      border-radius: 70px 30px 30px 70px;
+      background-color: rgb(92, 92, 235);
+      animation-name: moveTo;
+      animation-duration: 1s;
+      animation-fill-mode:forwards;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: 1;
+      animation-direction: alternate;
+      animation-play-state: paused;
+    }
+  }
+}
+
+@keyframes moveTo {
+  0% {
+    left: 40%;
+    border-radius: 70px 30px 30px 70px;
+  }
+
+  100% {
+    left: 0%;
+    border-radius: 30px 70px 70px 30px;
   }
 }
 </style>
