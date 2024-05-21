@@ -1,3 +1,23 @@
 .el-form-item__label::before {
     display: none; 
 }
+$pur: #6a3ccd;
+$pur2: #9c82d5;
+.el-form-item__label-wrap {
+  margin-left: 0 !important;
+}
+
+.el-form-item__label {
+  font-size: 1vw !important;
+  font-weight: 700;
+}
+.el-form-item.is-error .el-input__wrapper {
+  box-shadow: 0 0 0 1px $pur !important;
+}
+.el-form-item__error {
+  color: $pur !important;
+  font-size: 0.9vw !important;
+}
+.is-focus {
+  box-shadow: 0 0 0 2px $pur2 inset !important;
+}

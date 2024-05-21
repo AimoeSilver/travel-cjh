@@ -1,29 +1,26 @@
 <template>
   <div class="register-item">
     <div>
-      <p class="messageOne">开始你的 Travels 之旅</p>
+      <p class="messageOne">继续你的 Travels 之旅</p>
       <h1 class="messageTwo">
-        注册到
+        登录到
 
         <span class="T"> Travels </span>
       </h1>
       <p class="messagethree">
-        是否已经拥有账户
-        <span class="toLoginMessage" @click="pageChangeSubmit">登录</span>
+        是否还未拥有账户
+        <span class="toLoginMessage" @click="pageChangeSubmit">注册</span>
       </p>
 
       <el-form id="form" ref="formRef" :model="form" :rules="rules" label-width="auto">
         <el-form-item class="lineFeed" label="用户名" prop="name">
           <el-input class="input" v-model="form.name" />
         </el-form-item>
-        <el-form-item class="lineFeed" label="E-Mail" prop="email">
-          <el-input class="input" v-model="form.email" />
-        </el-form-item>
         <el-form-item class="lineFeed" label="密码" prop="password">
           <el-input class="input" v-model="form.password" type="password" autocomplete="off" />
         </el-form-item>
         <el-form-item>
-          <el-button class="submitButton input" type="primary" @click="onSubmit">注 册</el-button>
+          <el-button class="submitButton input" type="primary" @click="onSubmit">登 录</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -36,7 +33,6 @@ import { reactive, ref, defineEmits } from 'vue'
 // do not use same name with ref
 const form = reactive({
   name: '',
-  email: '',
   password: ''
 })
 
@@ -87,7 +83,7 @@ $pur2: #9c82d5;
   .messageOne {
     font-size: 1.7vw;
     font-weight: 700;
-    margin-top: 24%;
+    margin-top: 36%;
   }
   .messageTwo {
     font-size: 2vw;
@@ -147,5 +143,6 @@ $pur2: #9c82d5;
     }
   }
 }
+
 
 </style>

@@ -11,14 +11,14 @@
         }"
       ></div>
       <div class="card">
-        <div class="register-form">
+        <div class="register-login">
           <register-item @pageChange="handleChange" />
         </div>
       </div>
 
       <div class="card">
-        <div class="login-form">
-          <register-item @pageChange="handleChange" />
+        <div class="register-login">
+          <login-item></login-item>
         </div>
       </div>
     </div>
@@ -27,6 +27,7 @@
 
 <script setup>
 import RegisterItem from './RegisterItem.vue'
+import LoginItem from './LoginItem.vue'
 import { ref } from 'vue'
 
 // animation 状态
@@ -50,7 +51,7 @@ const handleChange = () => {
   }
 }
 
-const handleAnimationEnd = (event) => {
+const handleAnimationEnd = () => {
     console.log('动画播放完成了！')
     
 }
@@ -81,7 +82,7 @@ const handleAnimationEnd = (event) => {
     background-color: #fff;
     position: relative;
 
-    .register-form {
+    .register-login {
       width: 75%;
       height: 100%;
     }
