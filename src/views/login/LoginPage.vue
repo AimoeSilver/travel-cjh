@@ -9,7 +9,14 @@
         :style="{
           'animation-play-state': isPaused ? 'paused' : 'running'
         }"
-      ></div>
+      >
+        <!-- <img  src="@/assets/develop1.svg" alt=""> -->
+        <carousel ref="carousel">
+          <img  src="@/assets/develop1.svg" alt="">
+          <img  src="@/assets/develop2.svg" alt="">
+          
+        </carousel>
+      </div>
       <div class="card">
         <div class="register-login">
           <register-item @pageChange="handleChange" />
@@ -28,32 +35,36 @@
 <script setup>
 import RegisterItem from './RegisterItem.vue'
 import LoginItem from './LoginItem.vue'
+import Carousel from '@/components/login/LittleCarousel.vue'
 import { ref } from 'vue'
 
 // animation 状态
 const isPaused = ref(true)
 const clickStatus = ref(false)
 
-const cover =ref(null)
+const cover = ref(null)
+const carousel = ref(null)
 // login or register status 状态码
 
-// Click Login 执行的事件
 
+// Click Login 执行的事件
 const handleChange = () => {
   // 防止重复点击
+  
   if (!clickStatus.value) {
     clickStatus.value = true
     isPaused.value = !isPaused.value
+    carousel.value.nextSlide();
+
     setTimeout(() => {
       clickStatus.value = false
-    }, 1000)
+    }, 1100)
     console.log('Page Change')
   }
 }
 
 const handleAnimationEnd = () => {
-    console.log('动画播放完成了！')
-    
+  console.log('动画播放完成了！')
 }
 </script>
 
@@ -102,17 +113,31 @@ const handleAnimationEnd = () => {
       width: 60%;
       position: absolute;
       left: 40%;
-      opacity: 0.6;
+      overflow: hidden;
+      // opacity: 0.6;
       z-index: 3;
       border-radius: 70px 30px 30px 70px;
       background-color: rgb(92, 92, 235);
       animation-name: moveTo;
       animation-duration: 1s;
-      animation-fill-mode:forwards;
+      animation-fill-mode: forwards;
       animation-timing-function: ease-in-out;
       animation-iteration-count: 1;
       animation-direction: alternate;
       animation-play-state: paused;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+
+      img {
+        min-width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2em;
+      }
     }
   }
 }
