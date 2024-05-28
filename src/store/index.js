@@ -1,18 +1,8 @@
 import { createStore } from "vuex";
+import user from "./modules/user"
 
 export default createStore({
-//   state: {
-//     isLogin: false,
-//     user: {},
-//   },
-//   mutations: {
-//     setLogin(state, payload) {
-//       state.isLogin = payload;
-//     },
-//     setUser(state, payload) {
-//       state.user = payload;
-//     },
-//   },
-//   actions: {},
-//   modules: {},
+    modules: {
+        user
+    }
 })

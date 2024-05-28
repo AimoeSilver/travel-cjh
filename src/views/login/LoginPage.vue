@@ -59,13 +59,15 @@ const handleChange = () => {
     setTimeout(() => {
       clickStatus.value = false
     }, 1100)
-    console.log('Page Change')
+    // console.log('Page Change')
   }
 }
 
 const handleAnimationEnd = () => {
-  console.log('动画播放完成了！')
+  // console.log('动画播放完成了！')
 }
+
+
 </script>
 
 <style lang="scss" scoped>

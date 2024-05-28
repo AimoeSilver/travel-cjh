@@ -21,3 +21,7 @@ $pur2: #9c82d5;
 .is-focus {
   box-shadow: 0 0 0 2px $pur2 inset !important;
 }
+
+.el-input__inner {
+  font-size: 1.4em !important;
+}

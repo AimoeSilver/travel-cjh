@@ -19,6 +19,7 @@
         <el-form-item class="lineFeed" label="密码" prop="password">
           <el-input class="input" v-model="form.password" type="password" autocomplete="off" />
         </el-form-item>
+        
         <el-form-item>
           <el-button class="submitButton input" type="primary" @click="onSubmit">登 录</el-button>
         </el-form-item>
@@ -28,7 +29,11 @@
 </template>
 
 <script setup>
-import { reactive, ref, defineEmits } from 'vue'
+import { reactive, ref, defineEmits, onMounted } from 'vue'
+import { useStore  } from 'vuex'
+
+// 拿到 store instance
+const store = useStore()
 
 // do not use same name with ref
 const form = reactive({
@@ -55,7 +60,9 @@ const onSubmit = () => {
   formRef.value?.validate((valid) => {
     if (valid) {
       // 提交表单
-      console.log('表单验证通过，可以提交')
+      console.log('表单验证通过，可以提交,数据为 ', form)
+      
+      store.dispatch('user/login', form)
     } else {
       console.log('表单验证失败')
       return false
@@ -70,6 +77,13 @@ const emit = defineEmits(['pageChange'])
 const pageChangeSubmit =  () => {
   emit('pageChange')
 }
+
+// 挂载执行
+onMounted(() => {
+  // console.log('Mounted!')
+  
+})
+
 </script>
 
 <style lang="scss" scoped>
