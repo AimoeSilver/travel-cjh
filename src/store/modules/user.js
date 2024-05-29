@@ -1,9 +1,18 @@
 import { login } from '@/api/sys'
+import {getItem , setItem} from '@/utils/storage'
+import { TOKEN } from '@/constant/index'
 
 const v = {
   namespaced: true,
-  state: () => ({}),
-  mutation: {},
+  state: () => ({
+    token: getItem('token') || ''
+  }),
+  mutation: {
+    setToken(state, token){
+      state.token = token
+      setItem(TOKEN,token)
+    }
+  },
   actions: {
     login(content, userInfo) {
         const { name, password } = userInfo
@@ -12,8 +21,9 @@ const v = {
         return new Promise((resolve, reject) => {
             
             login({username , password})
-            .then(date => {
-                resolve(date)
+            .then(data => {
+                
+                resolve(data)
             })
             .catch(err => {
                 reject(err)
