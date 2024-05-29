@@ -10,7 +10,7 @@ export const setItem = (key, value) => {
     value = JSON.stringify(value)
   }
   // write
-  window.localStorage.setItem()
+  window.localStorage.setItem(key, value)
 }
 
 export const getItem = (key) => {
