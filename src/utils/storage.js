@@ -18,7 +18,7 @@ export const getItem = (key) => {
   try {
     return JSON.parse(value)
   } catch (err) {
-    return err
+    return false
   }
 }
 

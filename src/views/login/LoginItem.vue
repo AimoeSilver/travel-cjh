@@ -31,9 +31,13 @@
 <script setup>
 import { reactive, ref, defineEmits, onMounted } from 'vue'
 import { useStore  } from 'vuex'
+import { useRouter } from 'vue-router' 
 
 // 拿到 store instance
 const store = useStore()
+
+// get router instance
+const router = useRouter()
 
 // do not use same name with ref
 const form = reactive({
@@ -62,7 +66,14 @@ const onSubmit = () => {
       // 提交表单
       console.log('表单验证通过，可以提交,数据为 ', form)
       
-      store.dispatch('user/login', form)
+      store.dispatch('user/login', form).then(() => {
+        // 执行跳转
+        router.push('/about')
+      }).catch(() => {
+        console.log(`登录失败`)
+      })
+      
+      
     } else {
       console.log('表单验证失败')
       return false

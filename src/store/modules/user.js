@@ -2,6 +2,8 @@ import { login } from '@/api/sys'
 import { getItem, setItem } from '@/utils/storage'
 import { TOKEN } from '@/constant/index'
 
+
+
 const v = {
   namespaced: true,
   state: () => ({
@@ -24,6 +26,7 @@ const v = {
           .then(({data}) => {
             // this.commit('user/setToken',data.token)
             content.commit('setToken', data.token)
+            
             resolve(data)
           })
           .catch((err) => {
